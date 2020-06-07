@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Caster.fm HTML5 Embedded Radio Player</title>
+
+<script type="text/javascript" src="https://corscdn.caster.fm/advplayer/js/jquery.free.min.js"></script>
+<script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Promise%2CPromise.prototype.finally%2Cfetch%2Cdefault"></script>
+<script type="text/javascript" src="https://corscdn.caster.fm/advplayer/js/howler.core.min.js"></script>
+<script type="text/javascript" src="https://corscdn.caster.fm/advplayer/js/last.fm.js"></script>
+
+<script src="https://kit.fontawesome.com/092e5a6b3a.js" crossorigin="anonymous"></script>
+
+<link href="https://corscdn.caster.fm/advplayer/css/style.css" rel="stylesheet" type="text/css" />
+<link href="https://corscdn.caster.fm/advplayer/css/blue.css"  rel="stylesheet" type="text/css">
+
+<style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	}
+	.onair {
+		color: #ff4f4f;
+	}
+	
+	#errorContainer {
+		display: block;
+		background: #ff656529;
+		border: #ff5a5a4f 2px solid;
+		color: #ec8282;
+		font-size: 14px;
+		cursor: pointer;
+		text-shadow: 1px 1px 1px #000;
+		margin-bottom: 5px;
+		padding: 5px;
+		white-space: normal;
+		display:none;
+	}
+	
+	.error_icon {
+		float: right;
+		font-size: 16px;
+		margin-right: 5px;
+		position: absolute;
+		right: 0;
+	}
+</style>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-17379854-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-17379854-1');
+</script>
+
+</head>
+<body>
+
+<div id="jquery_jplayer_1" ></div>
+<div id="container">
+  <div id="container-inner">
+    <div id="content-border"> 
+      <!-- content bar -->
+      <div id="content-holder"> 
+	  
+	  <!-- Error container -->
+	  <div id="errorContainer" class="content content1">
+          <div style="float:left;margin-right: 20px;" >Error: cannot play the stream.
+		  Either the radio is currently off-air or your browser doesn't support the stream format.
+		  </div>
+		  <div class="error_icon"><i class="fas fa-window-close"></i></div>
+          <div class="clear"></div>
+        </div>
+	  
+	  
+        <!-- content 1 -->
+        <div id="content" class="content1">
+          <div id="content-live">
+            <div id="album">
+              <div id="albumbox1">No Album Cover</div>
+              <div id="albumbox2"><img width="80px" height="80px" style="height:80px;width:80px;" id="albumart" src="https://corscdn.caster.fm/advplayer/images/noalbum.png" /></div>
+              <div id="albumbox3"><img src="https://corscdn.caster.fm/advplayer/images/gloss.png" style="opacity:0.4;"/></div>
+            </div>
+            <span id="titletxt" class="title neontitle">Loading...</span><br/>
+            <span id='artisttxt' style="color:#b2b2b2; font-weight:bold; font-size:12px;"></span>  <br/>
+            <span id='albumtxt' style="color:#b2b2b2; font-weight:bold; font-size:12px;"></span>  <br/>
+            <span id="streamspec" style="color:#fefefe; font-size:11px;"><a href="https://www.facebook.com/ExclusiveSounds25/" target="_blank" style="color:#fefefe; font-size:11px;">Stream Hosting By ExclusiveSounds25.</a></span>
+			<span class="jp-no-solution" style="display:none;">Error: Your Browser doesn't support the stream codec/s.</span>
+			
+			<span class="newwindow"><span class="icon-new-tab ttl" title="Open in a new window"></span></span> </div>
+        </div>
+        <div class="clear"></div>
+        <!-- content 2 -->
+        <div class="content content2">
+          <div style="float:left; margin:0px 0px 12px 0px;" class="title">Tune in Media Player Links:</div>
+          <div class="clear"></div>
+          <div class="iconbox">
+            <div id="ico1"><a href="//www.caster.fm/players_links.php?server=shaincast.caster.fm&port=17007&auth=authn8806a90618ed43aa00bcd8eebf6f3319&type=pls"><img src="https://corscdn.caster.fm/advplayer/images/ico1.png" style="float:left;" />
+              <p class="icontext">Winamp/iTunes</p></a>
+            </div>
+          </div>
+          <div class="iconbox">
+            <div id="ico2"><a href="//www.caster.fm/players_links.php?server=shaincast.caster.fm&port=17007&auth=authn8806a90618ed43aa00bcd8eebf6f3319&type=wpl"><img src="https://corscdn.caster.fm/advplayer/images/ico2.png" style="float:left;" />
+              <p class="icontext">Windows Media Player</p></a>
+            </div>
+          </div>
+          <div class="iconbox">
+            <div id="ico3"><a href="//www.caster.fm/players_links.php?server=shaincast.caster.fm&port=17007&auth=authn8806a90618ed43aa00bcd8eebf6f3319&type=ram"><img src="https://corscdn.caster.fm/advplayer/images/ico3.png" style="float:left;" />
+              <p class="icontext">Real Player</p></a>
+            </div>
+          </div>
+          <div class="iconbox">
+            <div id="ico4"><a href="//www.caster.fm/players_links.php?server=shaincast.caster.fm&port=17007&auth=authn8806a90618ed43aa00bcd8eebf6f3319&type=qtl"><img src="https://corscdn.caster.fm/advplayer/images/ico4.png" style="float:left;" />
+              <p class="icontext">QuickTime</p></a>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <!-- content 3 -->
+        <!-- content 4 -->
+        <div class="content content4">
+          <div style="float:left; margin:0px 0px 25px 0px;" class="title">Embed This Player In Your Website:</div>
+          <div class="clear"></div>
+          <div id="embedtitle">Embed Code:</div>
+          <div id="embed">
+            <input id="embedtext" type="text" value="<iframe height='170px' frameborder='0' seamless src='//www.caster.fm/widgets/em_player.php?uid=518481&amp;c=&amp;t=blue&embed=true'></iframe>" />
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- player bar -->
+      <div id="playerbar">
+        <div id="jp_container_1" >
+          <div id="livebtn" class="offair neontitle">N/A</div>
+          <div class="break left"></div>
+          <div id="volumebar">
+          
+          
+            <section> <span class="tooltip"></span> <!-- Tooltip -->
+              <span class="jp-mute"></span> <!-- Volume --> 
+              <input id="volumecount" type="text" data-slider="true" value="1.0" data-slider-highlight="true" data-slider-theme="volume">
+              <!-- the Slider --> 
+              
+            </section>
+          </div>
+          <div class="break left" id="volumebarbreak"></div>
+          <div class="tt" title="Get Embed Code"  id="btn3"><span class="iconn icon-embed2"></span></div>
+          <div id="btnplay-holder">
+		  <div class="spinner" style="display:none;">
+			  <div class="double-bounce1"></div>
+			  <div class="double-bounce2"></div>
+			</div>
+            <div id="playbtn" class="jp-play" ></div>
+          </div>
+          <div class="tt" title="Tune In Links" id="btn1"><span class="iconn icon-link"></span></div>
+          <div class="break right" id="tuneinbreak"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="audioElement" preload="none">
+          <!--<source src="https://freeuk17.listen2myradio.com/live.mp3?typeportmount=s1_4838_stream_789476000" type="audio/mpeg"></source>-->
+</audio>
+<img src="https://corscdn.caster.fm/advplayer/images/pausebutton.png" style='height:0.1px;visibility: hidden;' />
+<img src="https://corscdn.caster.fm/advplayer/images/playbutton_blank.png" style='height:0.1px;visibility: hidden;' />
+		
+<script type="text/javascript">
+var streamhost = '109.169.23.99';
+var streamport = '4838';
+var vautoplay = 'false';
+var iscolor = 'false';
+var detectmobile = 'false';
+var isdbg =  0;
+var ispop =  0;
+var statusUrl = '//shaincast.caster.fm:17007/status-json.xsl';
+var streamUrl = 'https://freeuk17.listen2myradio.com/live.mp3?typeportmount=s1_4838_stream_789476000';
+
+var radioName = 'bekz25';
+var radioCategory = 'Society and Culture';
+var country = 'ZA';
+var ads = false;
+</script>
+
+
+<script type="text/javascript" src="https://corscdn.caster.fm/advplayer/js/freeplayer.js"></script>
+</body>
+</html>
